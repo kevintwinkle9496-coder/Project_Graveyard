@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project Graveyard – Senior Projects for Juniors</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--tx:#1b1f2a;--mu:#667085;--bd:#e3e6ee;--ac:#4f46e5;--ac2:#eef0ff;--ok:#12805c;--wn:#b45309;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12141b;--card:#1b1e28;--tx:#eceef5;--mu:#98a0b3;--bd:#2c3040;--ac:#8b85ff;--ac2:#25274a;--ok:#4ade80;--wn:#fbbf24}}
+:root[data-theme="dark"]{--bg:#12141b;--card:#1b1e28;--tx:#eceef5;--mu:#98a0b3;--bd:#2c3040;--ac:#8b85ff;--ac2:#25274a;--ok:#4ade80;--wn:#fbbf24}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.logo{font-weight:800;font-size:18px;color:var(--ac)}nav{display:flex;gap:6px;flex-wrap:wrap}
+button,select,input,textarea{font:inherit;color:var(--tx)}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:600}
+.btn.o{background:transparent;color:var(--ac);border:1px solid var(--bd)}.btn.o.on{background:var(--ac2);border-color:var(--ac)}
+.btn.s{padding:5px 10px;font-size:13px}main{max-width:1050px;margin:0 auto;padding:18px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+input,select,textarea{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;width:100%}
+.bar input,.bar select{width:auto;flex:1 1 150px}
+.tag{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:99px;padding:2px 9px;font-size:12px;margin:2px 3px 2px 0}
+.mu{color:var(--mu);font-size:13px}.ok{color:var(--ok)}.wn{color:var(--wn)}
+h2{margin:6px 0 14px}h3{margin:0 0 4px}
+.who{display:flex;gap:8px;align-items:center;margin:10px 0;padding-top:10px;border-top:1px solid var(--bd)}
+.av{width:34px;height:34px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}.stats .card{flex:1 1 140px;text-align:center}.stats b{font-size:24px;display:block;color:var(--ac)}
+.auth{max-width:400px;margin:40px auto}.auth label{display:block;margin:10px 0 3px;font-size:13px;color:var(--mu)}
+.modal{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:16px;z-index:20}.modal .card{max-width:520px;width:100%;max-height:90vh;overflow:auto}
+.ticket{border:2px dashed var(--ac);border-radius:12px;padding:16px;margin:10px 0;display:flex;gap:14px;align-items:center}
+.code{font:700 18px ui-monospace,monospace;letter-spacing:2px;color:var(--ac)}
+.qr{width:64px;height:64px;flex:none;display:grid;grid-template-columns:repeat(8,1fr);gap:1px}.qr i{background:var(--tx)}.qr i.z{background:transparent}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hov{transition:transform .15s,box-shadow .15s;cursor:pointer}.hov:hover{transform:translateY(-3px);box-shadow:0 8px 20px #0002}
+.rip{position:fixed;right:18px;bottom:calc(30px + env(safe-area-inset-bottom,0px));width:64px;height:64px;border-radius:50%;background:#fff;border:3px solid var(--ac);overflow:hidden;cursor:pointer;z-index:30;box-shadow:0 6px 18px #0005;padding:0;animation:fl 3s ease-in-out infinite}.rip img{width:100%;height:100%;object-fit:cover}@keyframes fl{50%{transform:translateY(-5px)}}
+.riplbl{position:fixed;right:18px;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:64px;text-align:center;font-size:12px;font-weight:700;color:var(--ac);z-index:30}
+.chat{position:fixed;right:18px;bottom:calc(108px + env(safe-area-inset-bottom,0px));width:min(360px,calc(100vw - 36px));height:min(460px,60vh);background:var(--card);border:1px solid var(--bd);border-radius:14px;box-shadow:0 10px 30px #0005;display:none;flex-direction:column;z-index:30;overflow:hidden}
+.ch{display:flex;gap:10px;align-items:center;padding:10px;border-bottom:1px solid var(--bd)}.ch img,.msg img{width:34px;height:34px;border-radius:50%;object-fit:cover;background:#fff;flex:none}
+#msgs{flex:1;overflow:auto;padding:10px;display:flex;flex-direction:column;gap:10px}.msg{display:flex;gap:8px;max-width:92%}.msg.me{align-self:flex-end}.bub{background:var(--ac2);border-radius:12px;padding:8px 10px}.me .bub{background:var(--ac);color:#fff}
+.chip{border:1px solid var(--ac);background:transparent;color:var(--ac);border-radius:99px;padding:3px 10px;margin:6px 6px 0 0;cursor:pointer;font-size:13px}.ci{display:flex;gap:6px;padding:8px;border-top:1px solid var(--bd)}
+</style>
+</head>
+<body>
+<header><div class="logo">🪦 Project Graveyard</div><nav id="nav"></nav></header>
+<main id="app"></main>
+<button class="rip" onclick="toggleChat()" aria-label="Ripper assistant"><img class="rimg" alt="Ripper"></button><span class="riplbl">Ripper</span>
+<div class="chat" id="chat"><div class="ch"><img class="rimg" alt=""><div><b>Ripper</b><div class="mu">Your project guide</div></div><button class="btn o s" style="margin-left:auto" onclick="toggleChat()">✕</button></div><div id="msgs"></div><div class="ci"><input id="ci" placeholder="Ask Ripper…" onkeydown="if(event.key==='Enter'){ask(this.value);this.value=''}"><button class="btn s" onclick="ask($('#ci').value);$('#ci').value=''">Send</button></div></div>
+<script>
+const $=s=>document.querySelector(s);
+const E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const DEPTS=['Computer Science','Electronics & Communication','Electrical','Mechanical','Civil','Information Technology','Chemical'];
+const SEMS=[1,2,3,4,5,6,7,8];
+const uid0=(R,id)=>R.users.find(u=>u.id===id);
+function seed(){
+ const u=(id,name,email,role,dept,sem,pts,cr)=>({id,name,email,role,dept,sem,pw:'demo',pts:0,cr:0});
+ const p=(id,o,title,dept,sem,desc,tags,loc)=>({id,owner:o,title,dept,sem,desc,tags,loc,status:'verified',copies:0});
+ const R={me:null,users:[
+  u(1,'Arjun Menon','arjun@college.edu','senior','Computer Science',7,150,40),
+  u(2,'Fathima Nasar','fathima@college.edu','senior','Electronics & Communication',6,100,20),
+  u(3,'Rahul Das','rahul@college.edu','senior','Mechanical',8,50,0),
+  u(4,'Admin Faculty','admin@college.edu','admin','Computer Science',0,0,0),u(5,'Meera Nair','meera@college.edu','senior','Civil',7,0,0),u(6,'Sanjay Pillai','sanjay@college.edu','senior','Electrical',8,0,0),u(7,'Anjali Raj','anjali@college.edu','senior','Information Technology',6,0,0),u(8,'Nikhil Varma','nikhil@college.edu','senior','Chemical',7,0,0)],
+ projects:[
+  p(1,1,'Campus Bus Tracker','Computer Science',7,'Live GPS tracking of college buses with arrival predictions and a student-facing app.',['React','Node.js','MQTT'],'CS Lab 2, Block A'),
+  p(2,1,'Attendance via Face Recognition','Computer Science',6,'Classroom attendance marking using a webcam and a lightweight face-recognition model.',['Python','OpenCV'],'CS Lab 1, Block A'),
+  p(3,2,'Smart Irrigation Controller','Electronics & Communication',6,'Soil-moisture sensing with automatic valve control and an SMS alert system.',['Arduino','GSM','Sensors'],'Electronics Lab, Block C'),
+  p(4,3,'Solar-Powered Water Purifier','Mechanical',8,'Low-cost solar distillation unit with a tilted-basin design reaching high yield per day.',['Solar','Thermal','CAD'],'Workshop, Block D'),
+  p(5,7,'Smart Parking System','Information Technology',6,'Sensors detect free slots and a web dashboard shows live availability and reservations.',['IoT','Flask','MySQL'],'IT Lab 3, Block B'),
+  p(6,5,'Low-Cost Bridge Load Tester','Civil',7,'Scaled bridge model with strain gauges that plots stress as a load moves across.',['Strain gauge','Arduino'],'Structures Lab, Block E'),
+  p(7,6,'Smart Energy Meter','Electrical',8,'Measures home power use in real time and shows usage trends and tariff estimates.',['ESP32','Dashboard'],'Power Lab, Block C'),
+  p(8,8,'Biodiesel from Waste Cooking Oil','Chemical',7,'Lab-scale transesterification setup turning used oil into usable biodiesel.',['Catalyst','Lab-scale'],'Chem Lab, Block F'),
+  p(9,1,'Study Buddy Chatbot','Computer Science',5,'A chatbot that answers syllabus questions from uploaded class notes.',['Python','NLP','Flask'],'CS Lab 2, Block A'),
+  p(10,2,'Line-Following Robot','Electronics & Communication',4,'Beginner robot using IR sensors and PID tuning to follow tracks at speed.',['Arduino','IR','Motors'],'Robotics Club Room'),
+  p(11,3,'3D-Printed Prosthetic Hand','Mechanical',7,'Low-cost printed hand with tendon-driven fingers and a servo grip.',['CAD','3D printing'],'Workshop, Block D'),
+  p(12,5,'Rainwater Harvesting Planner','Civil',6,'Spreadsheet and map tool that sizes tanks and recharge pits for campus roofs.',['GIS','Excel'],'Survey Lab, Block E')],
+ copies:[],tickets:[],nid:100};R.projects.forEach((x,i)=>{x.copies=[14,9,11,6,12,5,8,7,10,4,9,6][i];x.visits=[22,15,18,9,20,8,12,11,16,6,13,9][i];x.likes=x.copies*2+3;uid0(R,x.owner).pts+=50+x.copies*20+x.visits*10});return R;
+}
+let S;try{S=JSON.parse(localStorage.getItem('pg_v2'))}catch(e){}if(!S)S=seed();
+const save=()=>{try{localStorage.setItem('pg_v2',JSON.stringify(S))}catch(e){}};
+const me=()=>S.users.find(u=>u.id===S.me);
+const uid=id=>S.users.find(u=>u.id===id);
+let view='home',F={q:'',d:'',s:''},authMode='login';
+
+function nav(){
+ const m=me(),n=$('#nav');
+ if(!m){n.innerHTML='';return}
+ const t=(v,l)=>`<button class="btn o s ${view===v?'on':''}" onclick="go('${v}')">${l}</button>`;
+ n.innerHTML=(m.role==='senior'?'<span class="tag" style="align-self:center">⭐ '+m.pts+' pts</span>':'')+t('home','Browse')+(m.role==='senior'?t('upload','Upload'):'')+(m.role==='admin'?t('verify','Verify ('+S.projects.filter(p=>p.status==='pending').length+')'):'')+t('mine','My Account')+`<button class="btn o s" onclick="logout()">Log out</button>`;
+}
+function go(v){view=v;render()}
+function logout(){S.me=null;save();view='home';render()}
+function render(){nav();const m=me();$('#app').innerHTML=!m?authView():({home:homeView,upload:uploadView,verify:verifyView,mine:mineView}[view]||homeView)();}
+
+function authView(){
+ const reg=authMode==='register';
+ return`<div class="card auth"><h2>${reg?'Create account':'Welcome back'}</h2>
+ ${reg?`<label>Full name</label><input id="n">`:''}
+ <label>College email</label><input id="e" type="email">
+ <label>Password</label><input id="p" type="password">
+ ${reg?`<label>I am a</label><select id="r" onchange="$('#ex').style.display=this.value==='admin'?'none':'block'"><option value="junior">Junior (browse and copy projects)</option><option value="senior">Senior (upload projects)</option><option value="admin">Faculty verifier</option></select>
+ <div id="ex"><label>Department</label><select id="d">${DEPTS.map(d=>`<option>${d}</option>`).join('')}</select><label>Semester</label><select id="s">${SEMS.map(s=>`<option>${s}</option>`).join('')}</select></div>`:''}
+ <div class="row"><button class="btn" onclick="${reg?'doReg()':'doLogin()'}">${reg?'Sign up':'Log in'}</button><button class="btn o" onclick="authMode='${reg?'login':'register'}';render()">${reg?'I have an account':'Create account'}</button></div>
+ ${reg?'':`<p class="mu">Demo logins (password <b>demo</b>): arjun@college.edu (senior), admin@college.edu (verifier). Or sign up as a junior.</p>`}
+ <p id="err" class="wn"></p></div>`;
+}
+function doLogin(){const u=S.users.find(x=>x.email===$('#e').value.trim().toLowerCase()&&x.pw===$('#p').value);if(!u)return $('#err').textContent='Wrong email or password.';S.me=u.id;save();view='home';render()}
+function doReg(){
+ const n=$('#n').value.trim(),e=$('#e').value.trim().toLowerCase(),p=$('#p').value,r=$('#r').value;
+ if(!n||!e||p.length<4)return $('#err').textContent='Fill in name, email and a password of 4+ characters.';
+ if(S.users.some(x=>x.email===e))return $('#err').textContent='That email is already registered.';
+ const u={id:S.nid++,name:n,email:e,pw:p,role:r,dept:r==='admin'?'Faculty':$('#d').value,sem:r==='admin'?0:+$('#s').value,pts:0,cr:0};
+ S.users.push(u);S.me=u.id;save();view='home';render();
+}
+
+function homeView(){
+ const m=me(),list=S.projects.filter(p=>p.status==='verified'&&(!F.d||p.dept===F.d)&&(!F.s||p.sem==F.s)&&(!F.q||(p.title+p.desc+p.tags.join(' ')).toLowerCase().includes(F.q.toLowerCase())));
+ list.sort((a,b)=>a.dept.localeCompare(b.dept)||a.sem-b.sem);
+ let h=`<h2>Projects by seniors</h2><p class="mu">Hi ${E(m.name)}. Browse verified work, copy one to build your own version, and book a visit ticket to see it in person.</p>
+ ${schemeHTML()}<div class="bar"><input placeholder="Search projects…" value="${E(F.q)}" oninput="F.q=this.value;renderGrid()">
+ <select onchange="F.d=this.value;renderGrid()"><option value="">All departments</option>${DEPTS.map(d=>`<option ${F.d===d?'selected':''}>${d}</option>`).join('')}</select>
+ <select onchange="F.s=this.value;renderGrid()"><option value="">All semesters</option>${SEMS.map(s=>`<option value="${s}" ${F.s==s?'selected':''}>Semester ${s}</option>`).join('')}</select><select onchange="F.o=this.value;renderGrid()"><option value="">Group by department</option><option value="c" ${F.o==='c'?'selected':''}>Most copied</option><option value="v" ${F.o==='v'?'selected':''}>Most visited</option></select></div><div id="g"></div>`;
+ setTimeout(renderGrid);return h;
+}
+function renderGrid(){
+ const list=S.projects.filter(p=>p.status==='verified'&&(!F.d||p.dept===F.d)&&(!F.s||p.sem==F.s)&&(!F.q||(p.title+p.desc+p.tags.join(' ')).toLowerCase().includes(F.q.toLowerCase())));
+ list.sort((a,b)=>a.dept.localeCompare(b.dept)||a.sem-b.sem);
+ const g=$('#g');if(!g)return;
+ if(!list.length){g.innerHTML='<div class="card mu">No projects match these filters.</div>';return}
+ if(F.o==='c')list.sort((a,b)=>b.copies-a.copies);if(F.o==='v')list.sort((a,b)=>(b.visits||0)-(a.visits||0));let out='',cur='';
+ for(const p of list){
+  const hd=F.o?'Ranked':p.dept;if(hd!==cur){if(cur)out+='</div>';cur=hd;out+=`<h3 style="margin:18px 0 8px">${E(cur)}</h3><div class="grid">`}
+  const o=uid(p.owner);
+  out+=`<div class="card hov" onclick="detail(${p.id})"><span class="mu">Semester ${p.sem} · <span class="ok">✔ Verified</span></span><h3>${E(p.title)}</h3><p style="margin:6px 0">${E(p.desc)}</p>
+  <div>${p.tags.map(t=>`<span class="tag">${E(t)}</span>`).join('')}</div>
+  <div class="who" style="cursor:pointer" onclick="event.stopPropagation();profile(${o.id})"><div class="av">${E(o.name[0])}</div><div><b>${E(o.name)}</b><div class="mu">${E(o.dept)} · Sem ${o.sem} · ⭐ ${o.pts}</div></div></div>
+  <div class="row"><button class="btn s" onclick="event.stopPropagation();copyP(${p.id})">Copy &amp; remix</button><button class="btn o s" onclick="event.stopPropagation();ticket(${p.id})">Get visit ticket</button><span class="mu" style="align-self:center">${p.copies} copies · ${p.visits||0} visits</span></div></div>`;
+ }
+ g.innerHTML=out+'</div>';
+}
+function copyP(id){
+ const m=me(),p=S.projects.find(x=>x.id===id);
+ if(m.role==='senior'&&p.owner===m.id)return toast('This is your own project.');
+ if(S.copies.some(c=>c.user===m.id&&c.proj===id))return toast('You already copied this one – see My Account.');
+ S.copies.push({user:m.id,proj:id,title:p.title+' (my version)',note:''});
+ p.copies++;uid(p.owner).pts+=PTS.copy;save();renderGrid();
+ toast('Copied! Find it in My Account. The author earned 20 points.');
+}
+function ticket(id){
+ const m=me(),p=S.projects.find(x=>x.id===id);
+ let t=S.tickets.find(x=>x.user===m.id&&x.proj===id);
+ if(!t){t={user:m.id,proj:id,code:'PV-'+(1000+Math.floor(Math.random()*9000))+'-'+p.id,date:new Date().toLocaleDateString()};S.tickets.push(t);if(p.owner!==m.id){p.visits=(p.visits||0)+1;uid(p.owner).pts+=PTS.visit}save()}
+ showTicket(t);
+}
+function showTicket(t){
+ const p=S.projects.find(x=>x.id===t.proj),m=uid(t.user),pat=[...t.code].map((c,i)=>(c.charCodeAt(0)*(i+3))%3?'':'z');
+ let q='';for(let i=0;i<64;i++)q+=`<i class="${(t.code.charCodeAt(i%t.code.length)+i*7)%3?'':'z'}"></i>`;
+ const d=document.createElement('div');d.className='modal';d.onclick=e=>{if(e.target===d)d.remove()};
+ d.innerHTML=`<div class="card"><h3>Physical project visit ticket</h3><div class="ticket"><div class="qr">${q}</div><div><div class="code">${t.code}</div><b>${E(p.title)}</b><div class="mu">${E(p.loc)} · issued ${t.date}</div><div class="mu">Holder: ${E(m.name)}</div></div></div><p class="mu">Show this ticket at the venue. Visit during college hours; the senior or lab in-charge will demo the project.</p><div class="row"><button class="btn" onclick="window.print()">Print</button><button class="btn o" onclick="this.closest('.modal').remove()">Close</button></div></div>`;
+ document.body.appendChild(d);
+}
+function toast(msg){const d=document.createElement('div');d.className='modal';d.onclick=()=>d.remove();d.innerHTML=`<div class="card" style="max-width:360px"><p>${E(msg)}</p><button class="btn">OK</button></div>`;document.body.appendChild(d)}
+
+function uploadView(){
+ const m=me();
+ return`<h2>Upload a project</h2><div class="card" style="max-width:600px"><p class="mu">Uploading as <b>${E(m.name)}</b> · ${E(m.dept)}, Semester ${m.sem}. A faculty member verifies it before it goes live; you earn <b>50 points</b> once approved.</p>
+ <label class="mu">Title</label><input id="t"><label class="mu">Description</label><textarea id="ds" rows="4"></textarea>
+ <label class="mu">Tags (comma separated)</label><input id="tg" placeholder="Python, Arduino">
+ <label class="mu">Where can juniors see the physical project?</label><input id="lc" placeholder="Lab / block / room">
+ <label class="mu">Semester when you built it</label><select id="sm">${SEMS.map(s=>`<option ${s==m.sem?'selected':''}>${s}</option>`).join('')}</select>
+ <div class="row"><button class="btn" onclick="doUpload()">Submit for verification</button></div></div>`;
+}
+function doUpload(){
+ const m=me(),t=$('#t').value.trim(),ds=$('#ds').value.trim();
+ if(!t||!ds)return toast('Please add a title and description.');
+ S.projects.push({id:S.nid++,owner:m.id,title:t,dept:m.dept,sem:+$('#sm').value,desc:ds,tags:$('#tg').value.split(',').map(x=>x.trim()).filter(Boolean),loc:$('#lc').value.trim()||'Ask department office',status:'pending',copies:0});
+ save();toast('Submitted! It will appear after verification.');go('mine');
+}
+function verifyView(){
+ const l=S.projects.filter(p=>p.status==='pending');
+ return`<h2>Pending verification</h2>`+(l.length?l.map(p=>{const o=uid(p.owner);return`<div class="card" style="margin-bottom:12px"><h3>${E(p.title)}</h3><p>${E(p.desc)}</p><div class="mu">${E(o.name)} · ${E(p.dept)} · Sem ${p.sem} · Venue: ${E(p.loc)}</div><div class="row"><button class="btn s" onclick="vf(${p.id},1)">Approve</button><button class="btn o s" onclick="vf(${p.id},0)">Reject</button></div></div>`}).join(''):'<div class="card mu">Nothing waiting. All caught up.</div>');
+}
+function vf(id,ok){const p=S.projects.find(x=>x.id===id);if(ok){p.status='verified';uid(p.owner).pts+=PTS.up}else p.status='rejected';save();render()}
+function mineView(){
+ const m=me();let h=`<h2>${E(m.name)}</h2><p class="mu">${E(m.role[0].toUpperCase()+m.role.slice(1))}${m.role!=='admin'?' · '+E(m.dept)+' · Semester '+m.sem:''}</p>`;
+ if(m.role==='senior'){
+  const mine=S.projects.filter(p=>p.owner===m.id);
+  h+=`${statsHTML(m)}<h3>My uploads</h3>`+mine.map(p=>`<div class="card" style="margin:8px 0"><b>${E(p.title)}</b> <span class="${p.status==='verified'?'ok':'wn'}">${p.status}</span><div class="mu">${p.copies} juniors copied this</div></div>`).join('');
+  const lb=S.users.filter(u=>u.role==='senior').sort((a,b)=>(b.pts+b.cr)-(a.pts+a.cr));
+  h+=`<h3 style="margin-top:20px">Leaderboard</h3>`+lb.map((u,i)=>`<div class="card hov" style="margin:6px 0" onclick="profile(${u.id})">#${i+1} ${E(u.name)} <span class="mu">· ${u.pts} pts · ${title(u.pts)}</span></div>`).join('');
+ }
+ if(m.role==='junior'){
+  const c=S.copies.filter(x=>x.user===m.id),t=S.tickets.filter(x=>x.user===m.id);
+  h+=`<h3>My copied projects</h3>`+(c.length?c.map(x=>`<div class="card" style="margin:8px 0"><b>${E(x.title)}</b><div class="mu">Based on: ${E(S.projects.find(p=>p.id===x.proj).title)}</div></div>`).join(''):'<p class="mu">Nothing yet. Copy a project from Browse.</p>')+`<h3 style="margin-top:20px">My tickets</h3>`+(t.length?t.map((x,i)=>`<div class="card" style="margin:8px 0"><span class="code">${x.code}</span> · ${E(S.projects.find(p=>p.id===x.proj).title)} <button class="btn o s" onclick="showTicket(S.tickets.filter(x=>x.user===${m.id})[${i}])">View</button></div>`).join(''):'<p class="mu">No tickets yet.</p>');
+ }
+ if(m.role==='admin')h+='<p class="mu">Use Verify to approve or reject uploaded projects.</p>';
+ return h;
+}
+const PTS={up:50,visit:10,copy:20},ART='https://claude.ai/artifact/DDr67fTPhBEpkXerWc1m75',RIP='data:image/jpeg;base64,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';
+const title=p=>p>=600?'Grim Legend':p>=300?'Reaper':p>=100?'Grave Digger':'Rookie';
+const rank=m=>S.users.filter(u=>u.role==='senior').sort((a,b)=>b.pts-a.pts).findIndex(u=>u.id===m.id)+1;
+const sums=m=>{const l=S.projects.filter(p=>p.owner===m.id&&p.status==='verified');return{n:l.length,c:l.reduce((a,p)=>a+p.copies,0),v:l.reduce((a,p)=>a+(p.visits||0),0)}};
+function schemeHTML(){return`<div class="card" style="margin-bottom:14px"><b>How scoring works</b><div class="row" style="margin-top:6px"><span class="tag">⬆ Verified upload +50</span><span class="tag">👣 Someone visits your project +10</span><span class="tag">📋 Someone copies it +20</span></div><div class="mu">Titles: Rookie → Grave Digger (100) → Reaper (300) → Grim Legend (600)</div></div>`}
+function statsHTML(m){const s=sums(m);return`<div class="stats"><div class="card"><b>${m.pts}</b>Score · ${title(m.pts)}</div><div class="card"><b>#${rank(m)}</b>Rank</div><div class="card"><b>${s.n}</b>Projects (+${s.n*PTS.up})</div><div class="card"><b>${s.c}</b>Copies (+${s.c*PTS.copy})</div><div class="card"><b>${s.v}</b>Visits (+${s.v*PTS.visit})</div></div><div class="row" style="margin:-4px 0 14px"><button class="btn s" onclick="shareProfile(${m.id})">Share my profile</button><button class="btn o s" onclick="profile(${m.id})">Preview public profile</button></div>`}
+function shareProfile(id){const u=uid(id),text=u.name+' has '+u.pts+' points on Project Graveyard ('+title(u.pts)+')',url=ART+'#u'+id;
+ if(navigator.share)navigator.share({title:'Project Graveyard',text,url}).catch(()=>{});else{try{navigator.clipboard.writeText(text+' '+url).then(()=>toast('Profile link copied!')).catch(()=>toast(url))}catch(e){toast(url)}}}
+function modal(h){const d=document.createElement('div');d.className='modal';d.onclick=e=>{if(e.target===d)d.remove()};d.innerHTML=h;document.body.appendChild(d)}
+function profile(id){const u=uid(id);if(!u)return;const l=S.projects.filter(p=>p.owner===id&&p.status==='verified'),s=sums(u);
+ modal(`<div class="card" style="text-align:center"><div class="av" style="width:64px;height:64px;font-size:28px;margin:0 auto 8px">${E(u.name[0])}</div><h2 style="margin:0">${E(u.name)}</h2><div class="mu">${E(u.dept)} · Semester ${u.sem}</div><div style="margin:12px 0"><span class="code" style="font-size:34px">${u.pts}</span><div class="mu">points · ${title(u.pts)}${u.role==='senior'?' · Rank #'+rank(u):''}</div></div><div class="mu">${s.n} projects · ${s.c} copies · ${s.v} visits</div><div style="text-align:left;margin-top:10px">${l.map(p=>`<span class="tag">${E(p.title)}</span>`).join('')}</div><div class="row" style="justify-content:center"><button class="btn s" onclick="shareProfile(${id})">Share</button><button class="btn o s" onclick="this.closest('.modal').remove()">Close</button></div></div>`)}
+function detail(id){const p=S.projects.find(x=>x.id===id),o=uid(p.owner);
+ modal(`<div class="card"><span class="mu">${E(p.dept)} · Semester ${p.sem}</span><h2 style="margin:4px 0 8px">${E(p.title)}</h2><p>${E(p.desc)}</p><div>${p.tags.map(t=>`<span class="tag">${E(t)}</span>`).join('')}</div><p class="mu">📍 ${E(p.loc)} · ${p.copies} copies · ${p.visits||0} visits</p><div class="who" style="cursor:pointer" onclick="this.closest('.modal').remove();profile(${o.id})"><div class="av">${E(o.name[0])}</div><div><b>${E(o.name)}</b><div class="mu">${E(o.dept)} · Sem ${o.sem} · ⭐ ${o.pts}</div></div></div><div class="row"><button class="btn s" onclick="copyP(${p.id})">Copy &amp; remix</button><button class="btn o s" onclick="ticket(${p.id})">Get visit ticket</button><button class="btn o s" onclick="like(${p.id},this)">💀 ${(p.likes||0)+(p.lk||[]).length}</button><button class="btn o s" onclick="this.closest('.modal').remove()">Close</button></div></div>`)}
+function like(id,b){const p=S.projects.find(x=>x.id===id),m=me();p.lk=p.lk||[];const i=p.lk.indexOf(m.id);i<0?p.lk.push(m.id):p.lk.splice(i,1);save();b.textContent='💀 '+((p.likes||0)+p.lk.length)}
+let chatOpen=false;
+function toggleChat(){chatOpen=!chatOpen;$('#chat').style.display=chatOpen?'flex':'none';if(chatOpen&&!$('#msgs').children.length)say('Boo! I’m <b>Ripper</b>, your project guide. Ask me about points, tickets or copying, or tell me what you want to build.',['How do points work?','Suggest a project','What is a visit ticket?'])}
+function say(h,chips=[]){const b=document.createElement('div');b.className='msg';b.innerHTML=`<img src="${RIP}" alt=""><div><div class="bub">${h}</div>${chips.map(c=>typeof c==='string'?`<button class="chip" onclick="ask(this.textContent)">${E(c)}</button>`:`<button class="chip" onclick="detail(${c.id})">${E(c.title)}</button>`).join('')}</div>`;$('#msgs').appendChild(b);$('#msgs').scrollTop=1e5}
+function ask(q){if(!q.trim())return;const u=document.createElement('div');u.className='msg me';u.innerHTML=`<div class="bub">${E(q)}</div>`;$('#msgs').appendChild(u);$('#msgs').scrollTop=1e5;setTimeout(()=>reply(q.toLowerCase()),350)}
+function reply(q){
+ const V=S.projects.filter(p=>p.status==='verified');
+ if(/point|score|reward|rank/.test(q))return say('Verified upload: <b>+50</b>. Someone books a visit ticket: <b>+10</b>. Someone copies your project: <b>+20</b>. Titles: Grave Digger at 100, Reaper at 300, Grim Legend at 600.',['How do I upload?','Show top projects']);
+ if(/ticket|visit/.test(q))return say('Tap <b>Get visit ticket</b> on any project. You get a code to show at the venue, and the senior earns 10 points.');
+ if(/upload|submit|post/.test(q))return say('Log in as a senior, open <b>Upload</b>, fill in the details and submit. A faculty member verifies it, then you get 50 points.');
+ if(/copy|remix|fork/.test(q))return say('Press <b>Copy &amp; remix</b> on a project. It lands in My Account as your own version, and the author earns 20 points.');
+ if(/share|profile/.test(q))return say('Open <b>My Account</b> and tap <b>Share my profile</b> to send your score card to others.');
+ const top=()=>[...V].sort((a,b)=>b.copies-a.copies).slice(0,3);
+ if(/top|popular|best/.test(q))return say('Most copied right now:',top());
+ const w=q.replace(/[^a-z0-9 ]/g,'').split(' ').filter(x=>x.length>2&&!/suggest|project|idea|want|build|something|make|for|the|with|about|any|some/.test(x));
+ if(!w.length)return say('Here are some popular ones to start with:',top());
+ const l=V.map(p=>({p,s:w.filter(x=>(p.title+p.desc+p.tags.join(' ')+p.dept).toLowerCase().includes(x)).length})).filter(x=>x.s).sort((a,b)=>b.s-a.s).slice(0,3).map(x=>x.p);
+ if(l.length)return say('Try these:',l);
+ say('No match for that. Try a topic like “IoT”, “robot” or “solar”, or ask about points and tickets.',['Show top projects','How do points work?']);
+}
+document.querySelectorAll('.rimg').forEach(i=>i.src=RIP);
+render();if(/^#u\d+$/.test(location.hash))profile(+location.hash.slice(2));
+</script>
+</body>
+</html>
